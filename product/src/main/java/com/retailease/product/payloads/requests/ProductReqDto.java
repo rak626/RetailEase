@@ -1,4 +1,4 @@
-package com.rakesh.RetailEase.payloads.requests;
+package com.retailease.product.payloads.requests;
 
 import lombok.Getter;
 

@@ -1,8 +1,7 @@
-package com.rakesh.RetailEase.payloads.response;
+package com.retailease.product.payloads.response;
 
 import lombok.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 
 @Getter
 @Setter

@@ -1,9 +1,15 @@
-package com.rakesh.RetailEase.entities;
+package com.retailease.product.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "products")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Product {
 
     @Id
