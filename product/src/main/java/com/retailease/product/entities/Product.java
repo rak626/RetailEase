@@ -1,7 +1,9 @@
 package com.retailease.product.entities;
 
-import jakarta.persistence.*;
+
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "products")
@@ -20,5 +22,12 @@ public class Product {
     private Long quantity;
     @Column(name = "barcode_no")
     private String barcodeNo;
-
+    @Column(name = "price")
+    private String price;
+    @Column(name = "category")
+    private String category;
+    @Column(name = "store_id")
+    private Long storeId;
+    @Column(name = "product_name")
+    private String name;
 }

@@ -7,6 +7,8 @@ import com.retailease.customer.payload.request.CustomerReqDto;
 import com.retailease.customer.payload.response.CustomerResDto;
 import com.retailease.customer.repository.CustomerRepo;
 import com.retailease.customer.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,12 +22,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepo customerRepo;
 
+    Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+
     public CustomerServiceImpl(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
 
     @Override
     public CustomerResDto addNewCustomer(CustomerReqDto customerReqDto) {
+        logger.info("adding new Customer info to database");
         Customer customer = Customer.builder()
                 .firstName(customerReqDto.getFirstName())
                 .lastName(customerReqDto.getLastName())
@@ -36,17 +41,25 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer savedCustomer = customerRepo.save(customer);
 
+        logger.info("customer added into db successfully");
+
         return CustomerHelper.customerResDtoMapper(savedCustomer);
     }
 
     @Override
     public void deleteCustomerById(Long customerId) {
+        logger.info("delete customer by id initiated");
         Customer customer = customerRepo.findById(customerId).orElseThrow(() -> new ResourceNotFoundException("Customer", "Id", customerId));
         customerRepo.delete(customer);
+        logger.info("Successfully deleted {} from the db" , customerId);
+
     }
 
     @Override
     public CustomerResDto updateCustomer(Long customerId, CustomerReqDto customerReqDto) {
+
+        logger.info("updating customer info started");
+
         Customer customer = customerRepo.findById(customerId).orElseThrow(() -> new ResourceNotFoundException("Customer", "Id", customerId));
 
         if (customerReqDto.getFirstName() != null) customer.setFirstName(customerReqDto.getFirstName());
@@ -55,11 +68,14 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerReqDto.getPhone() != null) customer.setPhone(customerReqDto.getPhone());
         Customer savedCustomer = customerRepo.save(customer);
 
+        logger.info("successfully updated the db");
+
         return CustomerHelper.customerResDtoMapper(savedCustomer);
     }
 
     @Override
     public List<CustomerResDto> findCustomerByType(String type, String value) {
+        logger.info("find by {}, with value : {}", type, value );
         List<Customer> customerList = new ArrayList<>();
         if (type.equalsIgnoreCase("firstname")) {
             List<Optional<Customer>> foundCustomerList = customerRepo.findAllByFirstName(value);
@@ -79,12 +95,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResDto findCustomerById(Long customerId) {
+        logger.info("find by customer id method invoked with {}", customerId);
         Customer customer = customerRepo.findById(customerId).orElseThrow(() -> new ResourceNotFoundException("Customer", "id", customerId));
         return CustomerHelper.customerResDtoMapper(customer);
     }
 
     @Override
     public List<CustomerResDto> findAllCustomer() {
+        logger.info("find all customer entries into the db");
         List<Customer> allCustomers = customerRepo.findAll();
 
         return allCustomers.stream().map(CustomerHelper::customerResDtoMapper)
