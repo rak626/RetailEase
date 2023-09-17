@@ -2,6 +2,7 @@ package com.retailease.customer.service.impl;
 
 import com.retailease.customer.entity.Customer;
 import com.retailease.customer.exceptions.ResourceNotFoundException;
+import com.retailease.customer.helper.CustomerHelper;
 import com.retailease.customer.payload.request.CustomerReqDto;
 import com.retailease.customer.payload.response.CustomerResDto;
 import com.retailease.customer.repository.CustomerRepo;
@@ -35,14 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         Customer savedCustomer = customerRepo.save(customer);
 
-        return CustomerResDto.builder()
-                .customerId(savedCustomer.getCustomerId())
-                .firstName(savedCustomer.getFirstName())
-                .lastName(savedCustomer.getLastName())
-                .email(savedCustomer.getEmail())
-                .phone(savedCustomer.getPhone())
-                .registrationDate(savedCustomer.getRegistrationDate())
-                .build();
+        return CustomerHelper.customerResDtoMapper(savedCustomer);
     }
 
     @Override
@@ -61,14 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerReqDto.getPhone() != null) customer.setPhone(customerReqDto.getPhone());
         Customer savedCustomer = customerRepo.save(customer);
 
-        return CustomerResDto.builder()
-                .customerId(savedCustomer.getCustomerId())
-                .firstName(savedCustomer.getFirstName())
-                .lastName(savedCustomer.getLastName())
-                .email(savedCustomer.getEmail())
-                .phone(savedCustomer.getPhone())
-                .registrationDate(savedCustomer.getRegistrationDate())
-                .build();
+        return CustomerHelper.customerResDtoMapper(savedCustomer);
     }
 
     @Override
@@ -87,45 +74,20 @@ public class CustomerServiceImpl implements CustomerService {
             List<Optional<Customer>> foundCustomerList = customerRepo.findAllByPhone(value);
             customerList = foundCustomerList.stream().map(customer -> customer.orElse(null)).collect(Collectors.toList());
         }
-        return customerList.stream().map(customer -> {
-            return CustomerResDto.builder()
-                    .customerId(customer.getCustomerId())
-                    .firstName(customer.getFirstName())
-                    .lastName(customer.getLastName())
-                    .email(customer.getEmail())
-                    .phone(customer.getPhone())
-                    .registrationDate(customer.getRegistrationDate())
-                    .build();
-
-        }).collect(Collectors.toList());
+        return customerList.stream().map(CustomerHelper::customerResDtoMapper).collect(Collectors.toList());
     }
 
     @Override
     public CustomerResDto findCustomerById(Long customerId) {
         Customer customer = customerRepo.findById(customerId).orElseThrow(() -> new ResourceNotFoundException("Customer", "id", customerId));
-        return CustomerResDto.builder()
-                .customerId(customer.getCustomerId())
-                .firstName(customer.getFirstName())
-                .lastName(customer.getLastName())
-                .email(customer.getEmail())
-                .phone(customer.getPhone())
-                .registrationDate(customer.getRegistrationDate())
-                .build();
+        return CustomerHelper.customerResDtoMapper(customer);
     }
 
     @Override
     public List<CustomerResDto> findAllCustomer() {
         List<Customer> allCustomers = customerRepo.findAll();
 
-        return allCustomers.stream().map(customer -> CustomerResDto.builder()
-                        .customerId(customer.getCustomerId())
-                        .firstName(customer.getFirstName())
-                        .lastName(customer.getLastName())
-                        .email(customer.getEmail())
-                        .phone(customer.getPhone())
-                        .registrationDate(customer.getRegistrationDate())
-                        .build()
-                )
+        return allCustomers.stream().map(CustomerHelper::customerResDtoMapper)
                 .collect(Collectors.toList());
     }
 }
