@@ -1,6 +1,5 @@
 package com.retailease.customer.service;
 
-import com.retailease.customer.CustomerApplication;
 import com.retailease.customer.payload.request.CustomerReqDto;
 import com.retailease.customer.payload.response.CustomerResDto;
 

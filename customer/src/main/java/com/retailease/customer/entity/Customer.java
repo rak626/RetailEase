@@ -1,8 +1,6 @@
 package com.retailease.customer.entity;
 
 import lombok.*;
-import org.apache.tomcat.jni.Address;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.util.Date;

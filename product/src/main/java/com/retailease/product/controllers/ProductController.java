@@ -19,9 +19,10 @@ public class ProductController {
     Logger logger = LoggerFactory.getLogger(ProductController.class);
     private final ProductService productService;
 
-    ProductController(ProductService productService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
+
 
     @PostMapping("/add")
     public ApiResponse addProduct(@RequestBody ProductReqDto productReqDto) {
