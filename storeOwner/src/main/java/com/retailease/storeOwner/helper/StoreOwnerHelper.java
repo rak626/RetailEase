@@ -2,7 +2,6 @@ package com.retailease.storeOwner.helper;
 
 import com.retailease.storeOwner.entity.StoreOwner;
 import com.retailease.storeOwner.payload.response.StoreOwnerResDto;
-import org.apache.catalina.Store;
 
 public class StoreOwnerHelper {
     public static StoreOwnerResDto storeOwnerResDtoMapper(StoreOwner storeOwner){

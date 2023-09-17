@@ -1,7 +1,6 @@
 package com.retailease.invoice.entity;
 
 import lombok.*;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.util.Date;
