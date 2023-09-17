@@ -23,11 +23,12 @@
 	<modules>
 		<module>product</module>
 		<module>customer</module>
-		<module>invoiceItems</module>
-		<module>invoices</module>
-		<module>transactions</module>
+		<module>invoiceItem</module>
+		<module>invoice</module>
+		<module>transaction</module>
 		<module>store</module>
 		<module>storeOwner</module>
+		<module>transactionItem</module>
 	</modules>
 
 </project>
