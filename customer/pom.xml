@@ -8,10 +8,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.retailease</groupId>
-	<artifactId>product</artifactId>
+	<artifactId>customer</artifactId>
 	<version>${project.parent.version}</version>
-	<name>Product</name>
-	<description>Product Module for RetailEase</description>
+	<name>Customer</name>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
