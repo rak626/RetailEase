@@ -1,13 +1,17 @@
-package com.retailease.product.payloads.requests;
+package com.retailease.product.payloads.request;
 
-import lombok.Getter;
+import lombok.*;
 
 
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProductReqDto {
     private String barcodeNo;
     private Long quantity;
-    private String price;
+    private Double price;
     private String category;
     private Long storeId;
     private String name;

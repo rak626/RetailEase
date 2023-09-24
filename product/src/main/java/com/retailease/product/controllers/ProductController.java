@@ -2,7 +2,7 @@ package com.retailease.product.controllers;
 
 
 import com.retailease.product.entities.Product;
-import com.retailease.product.payloads.requests.ProductReqDto;
+import com.retailease.product.payloads.request.ProductReqDto;
 import com.retailease.product.payloads.response.ApiResponse;
 import com.retailease.product.services.ProductService;
 import org.slf4j.Logger;

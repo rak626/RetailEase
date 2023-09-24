@@ -11,7 +11,7 @@ public class ProductResDto {
     private Long id;
     private Long quantity;
     private String barcodeNo;
-    private String price;
+    private Double price;
     private String category;
     private Long storeId;
     private String name;

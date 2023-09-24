@@ -5,17 +5,19 @@ import com.retailease.product.entities.Product;
 import com.retailease.product.exceptions.InvalidQuantityException;
 import com.retailease.product.exceptions.ResourceNotFoundException;
 import com.retailease.product.helper.ProductHelper;
-import com.retailease.product.payloads.requests.ProductReqDto;
+import com.retailease.product.payloads.request.ProductReqDto;
 import com.retailease.product.payloads.response.ProductResDto;
 import com.retailease.product.repositories.ProductRepo;
 import com.retailease.product.services.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class ProductServiceImpl implements ProductService {
     Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);

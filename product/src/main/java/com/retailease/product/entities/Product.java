@@ -23,7 +23,7 @@ public class Product {
     @Column(name = "barcode_no")
     private String barcodeNo;
     @Column(name = "price")
-    private String price;
+    private Double price;
     @Column(name = "category")
     private String category;
     @Column(name = "store_id")
